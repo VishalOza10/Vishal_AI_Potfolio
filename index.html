@@ -1,136 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vishal Oza – AI/ML Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vishal Oza - AI/ML Portfolio</title>
   <style>
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: Arial, sans-serif;
       margin: 0;
-      background-color: #f9fafb;
-      color: #111827;
+      padding: 0;
+      background-color: #f9f9f9;
     }
-
     header {
-      background-color: #1f2937;
+      background-color: #2c3e50;
       color: white;
-      padding: 2rem;
+      padding: 20px 0;
       text-align: center;
     }
-
     nav {
+      background-color: #34495e;
       display: flex;
       justify-content: center;
-      gap: 2rem;
-      background-color: #374151;
-      padding: 1rem;
+      gap: 20px;
+      padding: 10px;
     }
-
     nav a {
       color: white;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: bold;
     }
-
-    section {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
+    nav a:hover {
+      text-decoration: underline;
     }
-
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
     h2 {
-      color: #1f2937;
-      border-bottom: 2px solid #e5e7eb;
-      padding-bottom: 0.5rem;
+      color: #2c3e50;
+      border-bottom: 2px solid #ecf0f1;
+      padding-bottom: 10px;
     }
-
-    .artifact {
-      background: white;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    }
-
-    .btn-link {
-      display: inline-block;
-      margin-top: 0.5rem;
-      padding: 0.5rem 1rem;
-      background-color: #3b82f6;
-      color: white;
-      border-radius: 0.375rem;
-      text-decoration: none;
-    }
-
-    .timeline-img {
-      width: 100%;
-      max-width: 800px;
-      display: block;
-      margin: 2rem auto;
+    .section {
+      background-color: white;
+      padding: 20px;
+      margin-bottom: 40px;
       border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    img {
+      max-width: 100%;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    .links a {
+      display: inline-block;
+      margin-right: 10px;
+      background-color: #2980b9;
+      color: white;
+      padding: 5px 10px;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+    .links a:hover {
+      background-color: #3498db;
     }
   </style>
 </head>
-
 <body>
+
   <header>
-    <h1>Vishal Oza – AI/ML Portfolio</h1>
-    <p>AI/ML student with a passion for applied LLMs, prompt engineering, and AI tool evaluation</p>
+    <h1>Vishal Oza - AI/ML Portfolio</h1>
+    <p>AI/ML Student | GPT Projects | Applied AI Tools</p>
   </header>
 
   <nav>
-    <a href="#home">Home</a>
-    <a href="#artifact1">Projects</a>
+    <a href="#about">Home</a>
+    <a href="#artifact1">Artifact 1</a>
     <a href="#artifact2">Artifact 2</a>
   </nav>
 
-  <section id="home">
-    <h2>About Me</h2>
-    <p><strong>Introduction:</strong> I am an AI/ML student with a strong focus on real-world applications of large language models (LLMs), prompt engineering, and AI-assisted product development. In July 2025, I completed multiple hands-on projects involving GPT customization, model comparison, and AI research evaluation. I bring a practical mindset and a deep interest in visual communication and accessible AI design.</p>
-    <p><strong>Personal Value Proposition:</strong> I turn complex AI systems into accessible tools. Whether it's simplifying financial planning through GPT or evaluating AI research assistants, I build and test systems that are user-first, data-grounded, and purpose-driven.</p>
-  </section>
+  <div class="container">
 
-  <section id="artifact1">
-    <h2>Artifact 1: AI Financial Assistant, Applied AI Tools and Comparative Evaluation</h2>
-    <div class="artifact">
-      <p><strong>Introduction:</strong> A suite of AI-driven tools and experiments showcasing GPT customization, comparative evaluation, and prompt-based specialization.</p>
-      <p><strong>Description:</strong> This includes a custom GPT-based budget assistant (BudgetBuddy), prompt engineering, model comparison across GPT, Claude, and Gemini, and real-world testing of specialized GPTs like Sora and Sharp Edge.</p>
-      <p><strong>Objective:</strong> To simplify financial tools using AI and analyze differences in model outputs.</p>
-      <p><strong>Process:</strong> Prompt testing, GPT customization, visual UI via Streamlit, and comparative dialogue evaluations.</p>
-      <p><strong>Tools & Technologies:</strong> OpenAI GPT, Claude Sonnet, Gemini 2.5, Streamlit, Canva</p>
-      <p><strong>Value Proposition:</strong> Demonstrates model variance and effectiveness for targeted applications.</p>
-      <p><strong>Unique Value:</strong> Holistic evaluation through user interfaces and model behavior.</p>
-      <p><strong>Relevance:</strong> Useful in product development, prompt design, and understanding LLMs.</p>
-      <a class="btn-link" href="https://chatgpt.com/g/g-6872994953888191a4a589b3e995779c-budgetbuddy" target="_blank">BudgetBuddy GPT</a>
-      <a class="btn-link" href="https://group4-ai-budget-planner.streamlit.app/" target="_blank">Streamlit UI</a>
-      <a class="btn-link" href="https://historyofartificailintelligence.my.canva.site/financial-assistant-concept-with-clickable-options" target="_blank">Canva Visual Prototype</a>
-      <a class="btn-link" href="https://chatgpt.com/share/687144e2-a164-8003-bddd-b1ec1962f637" target="_blank">ChatGPT Sample</a>
-      <a class="btn-link" href="https://g.co/gemini/share/8016384cb7e1" target="_blank">Gemini Comparison</a>
-      <a class="btn-link" href="https://claude.ai/public/artifacts/abdb7d6a-d8b2-4975-9a85-5cb4461e5eae" target="_blank">Claude Comparison</a>
-      <a class="btn-link" href="https://chatgpt.com/share/687285f4-895c-8001-832a-4ed2d6600bea" target="_blank">Sora GPT</a>
-      <a class="btn-link" href="https://chatgpt.com/share/6872bca4-79bc-8012-b5c5-2a7ae7ad2e1b" target="_blank">Fashion Tool</a>
-      <p><strong>Timeline of AI Progress:</strong></p>
-      <img src="TimeLine_AI.jpg" alt="AI Timeline" class="timeline-img" />
-    </div>
-  </section>
+    <section class="section" id="about">
+      <h2>About Me</h2>
+      <p>
+        I am an AI/ML student with a strong focus on real-world applications of large language models (LLMs), prompt engineering, and AI-assisted product development. In July 2025, I completed multiple hands-on projects involving GPT customization, model comparison, and AI research evaluation. I bring a practical mindset and a deep interest in visual communication and accessible AI design.
+      </p>
+      <p>
+        <strong>Value Proposition:</strong> I turn complex AI systems into accessible tools. Whether it's simplifying financial planning through GPT or evaluating AI research assistants, I build and test systems that are user-first, data-grounded, and purpose-driven.
+      </p>
+    </section>
 
-  <section id="artifact2">
-    <h2>Artifact 2: Faith and Adaptability – Analyzing AI Interpretations</h2>
-    <div class="artifact">
-      <p><strong>Introduction:</strong> Explored AI’s understanding of abstract concepts like faith, adaptability, and career flexibility using targeted prompts.</p>
-      <p><strong>Description:</strong> A prompt-based analysis using ChatGPT to reflect on real-life adaptability and career choices under uncertainty.</p>
-      <p><strong>Objective:</strong> Evaluate AI reasoning and adaptability when interpreting subjective concepts.</p>
-      <p><strong>Process:</strong> Developed personal narratives and examined AI responses for coherence and insight.</p>
-      <p><strong>Tools:</strong> OpenAI ChatGPT</p>
-      <p><strong>Value Proposition:</strong> Highlights strengths and limitations of AI in subjective reasoning.</p>
-      <p><strong>Unique Value:</strong> Showcases a novel use of AI for reflective self-analysis.</p>
-      <p><strong>Relevance:</strong> Pertinent to psychology, ethics, and AI-human interaction domains.</p>
-    </div>
-  </section>
+    <section class="section" id="artifact1">
+      <h2>Artifact 1: AI Financial Assistant, Applied AI Tools and Comparative Evaluation</h2>
+      <ul>
+        <li><strong>Introduction:</strong> Custom GPT tool for personalized budgeting</li>
+        <li><strong>Description:</strong> Created an AI chatbot that analyzes income, expenses, and goals to deliver savings plans</li>
+        <li><strong>Objective:</strong> Make financial planning approachable using LLMs</li>
+        <li><strong>Process:</strong> Prompt engineering, custom GPT config, Streamlit app development, UI prototyping in Canva</li>
+        <li><strong>Tools:</strong> OpenAI GPT, Streamlit, Canva</li>
+        <li><strong>Value Proposition:</strong> Simplifies personal finance for non-experts</li>
+        <li><strong>Unique Value:</strong> Combines chatbot logic, UI, and visual outputs in one tool</li>
+        <li><strong>Relevance:</strong> AI in fintech and user-centric tools</li>
+      </ul>
+      <div class="links">
+        <a href="https://chatgpt.com/g/g-6872994953888191a4a589b3e995779c-budgetbuddy" target="_blank">Custom GPT</a>
+        <a href="https://group4-ai-budget-planner.streamlit.app/" target="_blank">Streamlit App</a>
+        <a href="https://historyofartificailintelligence.my.canva.site/financial-assistant-concept-with-clickable-options" target="_blank">UI Concept</a>
+        <a href="https://chatgpt.com/share/687144e2-a164-8003-bddd-b1ec1962f637" target="_blank">Prompt Testing</a>
+      </div>
 
+      <h3>LLM Comparison</h3>
+      <p>
+        Prompt-driven evaluation between GPT-4o, Claude Sonnet, and Gemini using the same budgeting prompt. Identified variations in response quality, style, and adaptability.
+      </p>
+      <div class="links">
+        <a href="https://chatgpt.com/share/687144e2-a164-8003-bddd-b1ec1962f637" target="_blank">GPT-4o Example</a>
+        <a href="https://claude.ai/public/artifacts/0c00bcd1-cd39-4d64-a71d-49f425c79cdf" target="_blank">Claude Sample 1</a>
+        <a href="https://g.co/gemini/share/8016384cb7e1" target="_blank">Gemini Sample 1</a>
+      </div>
+
+      <h3>Specialized GPT Tool Testing</h3>
+      <p>Testing various custom GPTs such as Sora, Tinder Starter, Write For Me, and Sharp Edge Tool. Each response was reviewed for tone, adaptability, error handling, and depth.</p>
+      <div class="links">
+        <a href="https://chatgpt.com/share/687285f4-895c-8001-832a-4ed2d6600bea" target="_blank">Sora GPT</a>
+        <a href="https://chatgpt.com/share/6872842e-d598-8004-a7cb-661f9ee6756b" target="_blank">Tinder Starter</a>
+        <a href="https://chatgpt.com/share/687285f0-3700-8011-86f3-cc02c7d94281" target="_blank">Write For Me</a>
+        <a href="https://chatgpt.com/share/68740ecf-6680-8003-b2a3-66561f8ad0d5" target="_blank">Sharp Edge Tool</a>
+      </div>
+
+      <h3>AI Timeline</h3>
+      <p>A visual timeline capturing key AI milestones and GPT evolution</p>
+      <img src="TimeLine AI.jpg" alt="AI Timeline Image">
+    </section>
+
+    <section class="section" id="artifact2">
+      <h2>Artifact 2: Faith and Adaptability – Analyzing AI Interpretations</h2>
+      <ul>
+        <li><strong>Introduction:</strong> Prompt-based discussion with GPT exploring abstract concepts like belief, adaptability, and personal growth.</li>
+        <li><strong>Description:</strong> Tested GPT’s ability to generate thoughtful, philosophical responses, observe tone, and understand user sentiment.</li>
+        <li><strong>Objective:</strong> Evaluate how GPT handles complex human values in conversation.</li>
+        <li><strong>Process:</strong> Iterative questioning, probing tone sensitivity, reflecting on AI’s philosophical outputs.</li>
+        <li><strong>Tools:</strong> ChatGPT</li>
+        <li><strong>Value Proposition:</strong> Demonstrates how LLMs engage in reflective, human-centered dialogue.</li>
+        <li><strong>Unique Value:</strong> Helps gauge limits of AI empathy and reasoning.</li>
+        <li><strong>Relevance:</strong> Conversational AI, Human-AI interaction</li>
+      </ul>
+    </section>
+
+  </div>
 </body>
-
 </html>
