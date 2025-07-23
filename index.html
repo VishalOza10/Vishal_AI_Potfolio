@@ -24,6 +24,7 @@
             --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --card-bg: rgba(255, 255, 255, 0.1);
             --glass-bg: rgba(255, 255, 255, 0.05);
+            --artifact-bg: rgba(255, 255, 255, 0.03);
         }
 
         body {
@@ -347,21 +348,99 @@
             margin-bottom: 1rem;
         }
 
-        /* Projects Section */
+        /* Artifact Sections - Enhanced Design */
+        .artifact-section {
+            margin-bottom: 4rem;
+            background: var(--artifact-bg);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            border-radius: 30px;
+            padding: 4rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .artifact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-gradient);
+            opacity: 0.02;
+            z-index: -1;
+        }
+
+        .artifact-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            background: var(--bg-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            position: relative;
+        }
+
+        .artifact-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--bg-gradient);
+            border-radius: 2px;
+        }
+
+        .project-details {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+
+        .project-details li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .project-details li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .project-details strong {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* Enhanced Projects Grid */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
             margin-top: 3rem;
         }
 
         .project-card {
             background: var(--glass-bg);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.3s ease;
+            border-radius: 25px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
         }
@@ -375,82 +454,91 @@
             height: 100%;
             background: var(--bg-gradient);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
             z-index: -1;
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.2);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.25);
+            border-color: rgba(102, 126, 234, 0.3);
         }
 
         .project-card:hover::before {
-            opacity: 0.1;
+            opacity: 0.08;
         }
 
         .project-title {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: var(--accent-color);
         }
 
         .project-description {
             margin-bottom: 1.5rem;
             opacity: 0.9;
+            line-height: 1.7;
         }
 
         .project-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
+            gap: 0.7rem;
+            margin-bottom: 2rem;
         }
 
         .tag {
             background: rgba(102, 126, 234, 0.2);
             color: var(--text-light);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            padding: 0.4rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
             border: 1px solid rgba(102, 126, 234, 0.3);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
         }
 
         .project-image img {
             width: 100%;
-            border-radius: 10px;
+            border-radius: 15px;
             margin: 1rem 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s ease;
         }
 
         .project-links {
             display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
             flex-wrap: wrap;
         }
 
         .project-link {
             background: var(--bg-gradient);
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
+            padding: 0.7rem 1.3rem;
+            border-radius: 30px;
             text-decoration: none;
             font-size: 0.9rem;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
         }
 
         .project-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
         }
 
         .project-image img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+            transform: scale(1.03);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.4);
         }
 
         /* Contact Section */
@@ -543,6 +631,14 @@
                 flex-direction: column;
                 align-items: center;
             }
+
+            .artifact-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .project-card {
+                padding: 2rem;
+            }
         }
 
         /* Scroll indicator */
@@ -570,7 +666,8 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <li><a href="#artifact1">Artifact 1</a></li>
+                <li><a href="#artifact2">Artifact 2</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -591,10 +688,10 @@
                 <h2 class="hero-title">Robotics Software Engineer</h2>
                 <p class="hero-subtitle">Turning Complex AI Systems into Accessible Tools</p>
                 <p class="hero-description">
-                    I’m a Robotics Software Engineer with 3 years of experience developing real-time automation systems, motion control software, and intelligent robotics. I'm also actively exploring large language models and AI tools—this portfolio showcases my learning journey into making AI more practical and accessible.
+                    I'm a Robotics Software Engineer with 3 years of experience developing real-time automation systems, motion control software, and intelligent robotics. I'm also actively exploring large language models and AI tools—this portfolio showcases my learning journey into making AI more practical and accessible.
                 </p>
                 <div class="cta-buttons">
-                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#artifact1" class="btn btn-primary">View My Work</a>
                     <a href="#contact" class="btn btn-secondary">Get In Touch</a>
                 </div>
             </div>
@@ -616,7 +713,6 @@
                 <p>I'm a Robotics Software Engineer with <span class="highlight">3 years of experience</span> working on real-time robotics systems, automation, and software-driven motion control. My work focuses on building reliable, adaptable robotics for industrial environments.</p>
                 <p>Alongside my engineering work, I'm currently learning about <span class="highlight">large language models and AI tools</span>. This portfolio reflects my early explorations into applying AI in practical, user-focused ways.</p>
                 <p><strong>Value Proposition:</strong> I build systems that balance engineering precision with intuitive design—making advanced robotics and AI more approachable and effective.</p>
-
             </div>
             <div class="skills-grid fade-in">
                 <div class="skill-card">
@@ -644,93 +740,120 @@
     </section>
 
     <section id="projects" class="section">
-        <h2 class="section-title fade-in">Featured Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card fade-in">
-                <h3 class="project-title">AI Financial Assistant</h3>
-                <p class="project-description">
-                    Created a custom GPT tool that analyzes income, expenses, and goals to deliver personalized savings plans. Makes financial planning approachable using LLMs.
-                </p>
-                <div class="project-tags">
-                    <span class="tag">OpenAI GPT</span>
-                    <span class="tag">Streamlit</span>
-                    <span class="tag">Prompt Engineering</span>
-                    <span class="tag">UI Design</span>
+        <h2 class="section-title fade-in">Featured Work</h2>
+        
+        <!-- Artifact 1 -->
+        <div class="artifact-section fade-in" id="artifact1">
+            <h3 class="artifact-title">Artifact 1: AI Financial Assistant, Applied AI Tools and Comparative Evaluation</h3>
+            
+            <div class="projects-grid">
+                <!-- Main AI Financial Assistant -->
+                <div class="project-card fade-in">
+                    <h4 class="project-title">AI Financial Assistant</h4>
+                    <ul class="project-details">
+                        <li><strong>Introduction:</strong> Custom GPT tool for personalized budgeting</li>
+                        <li><strong>Description:</strong> Created an AI chatbot that analyzes income, expenses, and goals to deliver savings plans</li>
+                        <li><strong>Objective:</strong> Make financial planning approachable using LLMs</li>
+                        <li><strong>Process:</strong> Prompt engineering, custom GPT config, Streamlit app development, UI prototyping in Canva</li>
+                        <li><strong>Tools:</strong> OpenAI GPT, Streamlit, Canva</li>
+                        <li><strong>Value Proposition:</strong> Simplifies personal finance for non-experts</li>
+                        <li><strong>Unique Value:</strong> Combines chatbot logic, UI, and visual outputs in one tool</li>
+                        <li><strong>Relevance:</strong> AI in fintech and user-centric tools</li>
+                    </ul>
+                    <div class="project-tags">
+                        <span class="tag">OpenAI GPT</span>
+                        <span class="tag">Streamlit</span>
+                        <span class="tag">Prompt Engineering</span>
+                        <span class="tag">UI Design</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://chatgpt.com/g/g-6872994953888191a4a589b3e995779c-budgetbuddy" target="_blank" class="project-link">Custom GPT</a>
+                        <a href="https://group4-ai-budget-planner.streamlit.app/" target="_blank" class="project-link">Streamlit App</a>
+                        <a href="https://historyofartificailintelligence.my.canva.site/financial-assistant-concept-with-clickable-options" target="_blank" class="project-link">UI Concept</a>
+                        <a href="https://chatgpt.com/share/687144e2-a164-8003-bddd-b1ec1962f637" target="_blank" class="project-link">Prompt Testing</a>
+                    </div>
                 </div>
-                <p><strong>Unique Value:</strong> Combines chatbot logic, UI, and visual outputs in one comprehensive tool for fintech applications.</p>
-                <div class="project-links">
-                    <a href="https://chatgpt.com/g/g-6872994953888191a4a589b3e995779c-budgetbuddy" target="_blank" class="project-link">Budget Buddy</a>
-                    <a href="https://group4-ai-budget-planner.streamlit.app/" target="_blank" class="project-link">Streamlit App</a>
-                    <a href="https://historyofartificailintelligence.my.canva.site/financial-assistant-concept-with-clickable-options" target="_blank" class="project-link">UI Concept</a>
-                    <a href="https://chatgpt.com/share/687144e2-a164-8003-bddd-b1ec1962f637" target="_blank" class="project-link">Prompt Testing</a>
+
+                <!-- LLM Comparison -->
+                <div class="project-card fade-in">
+                    <h4 class="project-title">LLM Comparison</h4>
+                    <p class="project-description">
+                        Prompt-driven evaluation between GPT-4o, Claude Sonnet, and Gemini using the same budgeting prompt. Identified variations in response quality, style, and adaptability.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Model Comparison</span>
+                        <span class="tag">Performance Analysis</span>
+                        <span class="tag">Research Methodology</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://chatgpt.com/share/687144e2-a164-8003-bddd-b1ec1962f637" target="_blank" class="project-link">GPT-4o Example</a>
+                        <a href="https://claude.ai/public/artifacts/0c00bcd1-cd39-4d64-a71d-49f425c79cdf" target="_blank" class="project-link">Claude Sample</a>
+                        <a href="https://g.co/gemini/share/8016384cb7e1" target="_blank" class="project-link">Gemini Sample</a>
+                    </div>
+                </div>
+
+                <!-- Specialized GPT Tool Testing -->
+                <div class="project-card fade-in">
+                    <h4 class="project-title">Specialized GPT Tool Testing</h4>
+                    <p class="project-description">
+                        Testing various custom GPTs such as Sora, Tinder Starter, Write For Me, and Sharp Edge Tool. Each response was reviewed for tone, adaptability, error handling, and depth.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Custom GPTs</span>
+                        <span class="tag">Quality Assurance</span>
+                        <span class="tag">User Experience</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://chatgpt.com/share/687285f4-895c-8001-832a-4ed2d6600bea" target="_blank" class="project-link">Sora GPT</a>
+                        <a href="https://chatgpt.com/share/6872842e-d598-8004-a7cb-661f9ee6756b" target="_blank" class="project-link">Tinder Starter</a>
+                        <a href="https://chatgpt.com/share/687285f0-3700-8011-86f3-cc02c7d94281" target="_blank" class="project-link">Write For Me</a>
+                        <a href="https://chatgpt.com/share/68740ecf-6680-8003-b2a3-66561f8ad0d5" target="_blank" class="project-link">Sharp Edge Tool</a>
+                    </div>
+                </div>
+
+                <!-- AI Timeline -->
+                <div class="project-card fade-in">
+                    <h4 class="project-title">AI Timeline</h4>
+                    <p class="project-description">
+                        A visual timeline capturing key AI milestones and GPT evolution
+                    </p>
+                    <div class="project-image">
+                        <img src="./TimeLine_AI.jpg" alt="AI Timeline">
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Data Visualization</span>
+                        <span class="tag">AI History</span>
+                        <span class="tag">Research</span>
+                        <span class="tag">Timeline Design</span>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="project-card fade-in">
-                <h3 class="project-title">LLM Comparative Evaluation</h3>
-                <p class="project-description">
-                    Conducted prompt-driven evaluation between GPT-4o, Claude Sonnet, and Gemini using identical budgeting prompts. Identified key variations in response quality, style, and adaptability.
-                </p>
-                <div class="project-tags">
-                    <span class="tag">Model Comparison</span>
-                    <span class="tag">Performance Analysis</span>
-                    <span class="tag">Research Methodology</span>
+        <!-- Artifact 2 -->
+        <div class="artifact-section fade-in" id="artifact2">
+            <h3 class="artifact-title">Artifact 2: Faith and Adaptability – Analyzing AI Interpretations</h3>
+            
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <h4 class="project-title">AI Philosophy Explorer</h4>
+                    <ul class="project-details">
+                        <li><strong>Introduction:</strong> Prompt-based discussion with GPT exploring abstract concepts like belief, adaptability, and personal growth.</li>
+                        <li><strong>Description:</strong> Tested GPT's ability to generate thoughtful, philosophical responses, observe tone, and understand user sentiment.</li>
+                        <li><strong>Objective:</strong> Evaluate how GPT handles complex human values in conversation.</li>
+                        <li><strong>Process:</strong> Iterative questioning, probing tone sensitivity, reflecting on AI's philosophical outputs.</li>
+                        <li><strong>Tools:</strong> ChatGPT</li>
+                        <li><strong>Value Proposition:</strong> Demonstrates how LLMs engage in reflective, human-centered dialogue.</li>
+                        <li><strong>Unique Value:</strong> Helps gauge limits of AI empathy and reasoning.</li>
+                        <li><strong>Relevance:</strong> Conversational AI, Human-AI interaction</li>
+                    </ul>
+                    <div class="project-tags">
+                        <span class="tag">Conversational AI</span>
+                        <span class="tag">Human-AI Interaction</span>
+                        <span class="tag">Ethical AI</span>
+                        <span class="tag">Philosophy</span>
+                    </div>
                 </div>
-                <p><strong>Impact:</strong> Provides data-driven insights for selecting optimal AI models for specific use cases.</p>
-                <div class="project-links">
-                    <a href="https://chatgpt.com/share/687144e2-a164-8003-bddd-b1ec1962f637" target="_blank" class="project-link">GPT-4o Example</a>
-                    <a href="https://claude.ai/public/artifacts/0c00bcd1-cd39-4d64-a71d-49f425c79cdf" target="_blank" class="project-link">Claude Sample</a>
-                    <a href="https://g.co/gemini/share/8016384cb7e1" target="_blank" class="project-link">Gemini Sample</a>
-                </div>
-            </div>
-
-            <div class="project-card fade-in">
-                <h3 class="project-title">AI/ML Evolution Timeline</h3>
-                <p class="project-description">
-                    Comprehensive visual timeline documenting key milestones in AI and machine learning development, from early foundations to modern large language models and GPT evolution.
-                </p>
-                <div class="project-image">
-                    <img src="./TimeLine_AI.jpg" alt="AI/ML Timeline" style="width: 100%; border-radius: 10px; margin: 1rem 0;">
-                </div>
-                <div class="project-tags">
-                    <span class="tag">Data Visualization</span>
-                    <span class="tag">AI History</span>
-                    <span class="tag">Research</span>
-                    <span class="tag">Timeline Design</span>
-                </div>
-                <p><strong>Value:</strong> Educational resource showcasing the evolution of AI technology and understanding historical context of current developments.</p>
-            </div>
-
-            <div class="project-card fade-in">
-                <h3 class="project-title">Specialized GPT Tool Testing</h3>
-                <p class="project-description">
-                    Comprehensive testing of various custom GPTs including Sora, Tinder Starter, Write For Me, and Sharp Edge Tool. Evaluated tone, adaptability, error handling, and response depth.
-                </p>
-                <div class="project-tags">
-                    <span class="tag">Custom GPTs</span>
-                    <span class="tag">Quality Assurance</span>
-                    <span class="tag">User Experience</span>
-                </div>
-                <p><strong>Methodology:</strong> Systematic evaluation framework for assessing AI tool performance across multiple dimensions.</p>
-                <div class="project-links">
-                    <a href="https://chatgpt.com/share/687285f4-895c-8001-832a-4ed2d6600bea" target="_blank" class="project-link">Sora GPT</a>
-                    <a href="https://chatgpt.com/share/6872842e-d598-8004-a7cb-661f9ee6756b" target="_blank" class="project-link">Tinder Starter</a>
-                    <a href="https://chatgpt.com/share/687285f0-3700-8011-86f3-cc02c7d94281" target="_blank" class="project-link">Write For Me</a>
-                    <a href="https://chatgpt.com/share/68740ecf-6680-8003-b2a3-66561f8ad0d5" target="_blank" class="project-link">Sharp Edge Tool</a>
-                </div>
-            </div>
-
-            <div class="project-card fade-in">
-                <h3 class="project-title">AI Philosophy Explorer</h3>
-                <p class="project-description">
-                    Tested GPT's ability to engage in thoughtful, philosophical conversations about abstract concepts like belief, adaptability, and personal growth. Evaluated AI empathy and reasoning limits.
-                </p>
-                <div class="project-tags">
-                    <span class="tag">Conversational AI</span>
-                    <span class="tag">Human-AI Interaction</span>
-                    <span class="tag">Ethical AI</span>
-                </div>
-                <p><strong>Relevance:</strong> Critical for understanding how AI can engage in meaningful human-centered dialogue and exploring the limits of AI empathy and reasoning.</p>
             </div>
         </div>
     </section>
@@ -806,15 +929,21 @@
             }
         });
 
-        // Add some interactive hover effects
+        // Enhanced hover effects for cards
         document.querySelectorAll('.project-card, .skill-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
+                this.style.transform = 'translateY(-15px) scale(1.02)';
             });
             
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) scale(1)';
             });
+        });
+
+        // Add stagger animation for project cards
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
         });
     </script>
 </body>
