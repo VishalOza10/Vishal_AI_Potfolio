@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning vs Deep Learning - Detailed Analysis | Vishal Oza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --text-light: #ffffff;
+            --text-dark: #1a202c;
+            --bg-dark: #0d1117;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --ml-color: #4CAF50;
+            --dl-color: #FF6B6B;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--bg-dark);
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(2deg); }
+            66% { transform: translateY(-20px) rotate(-1deg); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--bg-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-link {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: var(--bg-gradient);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 6rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--bg-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Comparison Section */
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .ml-section, .dl-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .ml-section {
+            border-left: 4px solid var(--ml-color);
+        }
+
+        .dl-section {
+            border-left: 4px solid var(--dl-color);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-icon {
+            font-size: 3rem;
+            margin-right: 1rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .ml-section .section-title {
+            color: var(--ml-color);
+        }
+
+        .dl-section .section-title {
+            color: var(--dl-color);
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .feature-list li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .ml-section .feature-list li::before {
+            color: var(--ml-color);
+        }
+
+        .dl-section .feature-list li::before {
+            color: var(--dl-color);
+        }
+
+        /* Visual Diagram */
+        .diagram-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .diagram-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: var(--bg-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .architecture-diagram {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .ml-diagram, .dl-diagram {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .diagram-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .flow-step {
+            background: var(--card-bg);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        .flow-step::after {
+            content: '↓';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .flow-step:last-child::after {
+            display: none;
+        }
+
+        .ml-diagram .flow-step {
+            border-left: 3px solid var(--ml-color);
+        }
+
+        .dl-diagram .flow-step {
+            border-left: 3px solid var(--dl-color);
+        }
+
+        /* Comparison Table */
+        .comparison-table-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .table-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: var(--bg-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-table th {
+            background: var(--card-bg);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .ml-cell {
+            border-left: 3px solid var(--ml-color);
+        }
+
+        .dl-cell {
+            border-left: 3px solid var(--dl-color);
+        }
+
+        /* Use Cases Section */
+        .use-cases-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .use-case-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 3rem;
+        }
+
+        .use-case-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .ml-use-case .use-case-title {
+            color: var(--ml-color);
+        }
+
+        .dl-use-case .use-case-title {
+            color: var(--dl-color);
+        }
+
+        .use-case-list {
+            list-style: none;
+        }
+
+        .use-case-list li {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            border-left: 3px solid;
+        }
+
+        .ml-use-case .use-case-list li {
+            border-left-color: var(--ml-color);
+        }
+
+        .dl-use-case .use-case-list li {
+            border-left-color: var(--dl-color);
+        }
+
+        /* Decision Framework */
+        .decision-framework {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .framework-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: var(--bg-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .decision-flow {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .decision-node {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            min-width: 200px;
+            position: relative;
+        }
+
+        .decision-node::after {
+            content: '→';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        .decision-node:last-child::after {
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .comparison-container,
+            .architecture-diagram,
+            .use-cases-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 1rem;
+            }
+
+            .decision-flow {
+                flex-direction: column;
+            }
+
+            .decision-node::after {
+                content: '↓';
+                right: 50%;
+                top: auto;
+                bottom: -25px;
+                transform: translateX(50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Vishal Oza</div>
+            <a href="index.html" class="back-link">← Back to Portfolio</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Machine Learning vs Deep Learning</h1>
+            <p class="page-subtitle">A comprehensive analysis of two fundamental approaches to artificial intelligence, exploring their architectures, applications, and optimal use cases</p>
+        </div>
+
+        <!-- Core Comparison -->
+        <div class="comparison-container">
+            <div class="ml-section">
+                <div class="section-header">
+                    <div class="section-icon">🧠</div>
+                    <h2 class="section-title">Machine Learning</h2>
+                </div>
+                <p><strong>Definition:</strong> A subset of AI that enables systems to learn and improve from experience without being explicitly programmed for every task.</p>
+                
+                <h3>Key Characteristics:</h3>
+                <ul class="feature-list">
+                    <li>Requires feature engineering and data preprocessing</li>
+                    <li>Works well with smaller, structured datasets</li>
+                    <li>More interpretable and explainable results</li>
+                    <li>Lower computational requirements</li>
+                    <li>Faster training with traditional algorithms</li>
+                    <li>Human expertise needed for feature selection</li>
+                </ul>
+
+                <h3>Core Algorithms:</h3>
+                <ul class="feature-list">
+                    <li>Linear/Logistic Regression</li>
+                    <li>Decision Trees & Random Forest</li>
+                    <li>Support Vector Machines (SVM)</li>
+                    <li>K-Means Clustering</li>
+                    <li>Naive Bayes</li>
+                </ul>
+            </div>
+
+            <div class="dl-section">
+                <div class="section-header">
+                    <div class="section-icon">🔗</div>
+                    <h2 class="section-title">Deep Learning</h2>
+                </div>
+                <p><strong>Definition:</strong> A subset of ML using neural networks with multiple layers to automatically learn patterns and features from raw data.</p>
+                
+                <h3>Key Characteristics:</h3>
+                <ul class="feature-list">
+                    <li>Automatic feature extraction from raw data</li>
+                    <li>Requires large datasets for optimal performance</li>
+                    <li>Complex, often "black box" decision making</li>
+                    <li>High computational and memory requirements</li>
+                    <li>Longer training times but superior pattern recognition</li>
+                    <li>Minimal human intervention for feature engineering</li>
+                </ul>
+
+                <h3>Core Architectures:</h3>
+                <ul class="feature-list">
+                    <li>Convolutional Neural Networks (CNN)</li>
+                    <li>Recurrent Neural Networks (RNN)</li>
+                    <li>Long Short-Term Memory (LSTM)</li>
+                    <li>Transformer Models</li>
+                    <li>Generative Adversarial Networks (GAN)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Architecture Diagram -->
+        <div class="diagram-section">
+            <h2 class="diagram-title">Processing Architecture Comparison</h2>
+            <div class="architecture-diagram">
+                <div class="ml-diagram">
+                    <h3 style="color: var(--ml-color); margin-bottom: 1rem;">Machine Learning Workflow</h3>
+                    <div class="diagram-flow">
+                        <div class="flow-step">Raw Data Input</div>
+                        <div class="flow-step">Manual Feature Engineering</div>
+                        <div class="flow-step">Feature Selection</div>
+                        <div class="flow-step">Algorithm Training</div>
+                        <div class="flow-step">Model Validation</div>
+                        <div class="flow-step">Predictions</div>
+                    </div>
+                </div>
+                
+                <div class="dl-diagram">
+                    <h3 style="color: var(--dl-color); margin-bottom: 1rem;">Deep Learning Workflow</h3>
+                    <div class="diagram-flow">
+                        <div class="flow-step">Raw Data Input</div>
+                        <div class="flow-step">Input Layer</div>
+                        <div class="flow-step">Hidden Layers (Feature Learning)</div>
+                        <div class="flow-step">Output Layer</div>
+                        <div class="flow-step">Backpropagation</div>
+                        <div class="flow-step">Predictions</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Comparison Table -->
+        <div class="comparison-table-section">
+            <h2 class="table-title">Detailed Feature Comparison</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th class="ml-cell">Machine Learning</th>
+                        <th class="dl-cell">Deep Learning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Data Requirements</strong></td>
+                        <td class="ml-cell">Works with small to medium datasets (hundreds to thousands of samples)</td>
+                        <td class="dl-cell">Requires large datasets (thousands to millions of samples)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Feature Engineering</strong></td>
+                        <td class="ml-cell">Manual feature extraction and selection required</td>
+                        <td class="dl-cell">Automatic feature learning from raw data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Computational Power</strong></td>
+                        <td class="ml-cell">Can run on standard CPUs, lower memory requirements</td>
+                        <td class="dl-cell">Requires GPUs/TPUs, high memory and computational power</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Training Time</strong></td>
+                        <td class="ml-cell">Minutes to hours</td>
+                        <td class="dl-cell">Hours to days/weeks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Interpretability</strong></td>
+                        <td class="ml-cell">High - easy to understand decision process</td>
+                        <td class="dl-cell">Low - "black box" with complex decision patterns</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Problem Complexity</strong></td>
+                        <td class="ml-cell">Linear and moderately complex problems</td>
+                        <td class="dl-cell">Highly complex, non-linear problems</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overfitting Risk</strong></td>
+                        <td class="ml-cell">Moderate, manageable with proper techniques</td>
+                        <td class="dl-cell">High, requires careful regularization</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Use Cases -->
+        <div class="use-cases-section">
+            <div class="use-case-card ml-use-case">
+                <h3 class="use-case-title">Machine Learning Applications</h3>
+                <ul class="use-case-list">
+                    <li><strong>Financial Services:</strong> Credit scoring, fraud detection, algorithmic trading</li>
+                    <li><strong>Healthcare:</strong> Disease diagnosis with structured data, drug discovery</li>
+                    <li><strong>E-commerce:</strong> Recommendation systems, price optimization</li>
+                    <li><strong>Marketing:</strong> Customer segmentation, A/B testing</li>
+                    <li><strong>Manufacturing:</strong> Quality control, predictive maintenance</li>
+                    <li><strong>Agriculture:</strong> Crop yield prediction, soil analysis</li>
+                </ul>
+            </div>
+
+            <div class="use-case-card dl-use-case">
+                <h3 class="use-case-title">Deep Learning Applications</h3>
+                <ul class="use-case-list">
+                    <li><strong>Computer Vision:</strong> Image recognition, autonomous vehicles, medical imaging</li>
+                    <li><strong>Natural Language:</strong> ChatGPT, language translation, sentiment analysis</li>
+                    <li><strong>Audio Processing:</strong> Speech recognition, music generation</li>
+                    <li><strong>Gaming:</strong> AlphaGo, game AI, procedural content generation</li>
+                    <li><strong>Robotics:</strong> Path planning, object manipulation</li>
+                    <li><strong>Creative Arts:</strong> Art generation, style transfer, deepfakes</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Decision Framework -->
+        <div class="decision-framework">
+            <h2 class="framework-title">When to Choose ML vs DL</h2>
+            <p>Use this decision framework to determine the optimal approach for your project:</p>
+            
+            <div class="decision-flow">
+                <div class="decision-node">
+                    <h4>Data Size</h4>
+                    <p>Small/Medium → ML<br>Large → DL</p>
+                </div>
+                <div class="decision-node">
+                    <h4>Problem Type</h4>
+                    <p>Structured → ML<br>Unstructured → DL</p>
+                </div>
+                <div class="decision-node">
+                    <h4>Interpretability</h4>
+                    <p>Required → ML<br>Not Critical → DL</p>
+                </div>
+                <div class="decision-node">
+                    <h4>Resources</h4>
+                    <p>Limited → ML<br>Abundant → DL</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem; background: rgba(255, 255, 255, 0.05); padding: 2rem; border-radius: 15px;">
+                <h3 style="color: var(--accent-color); margin-bottom: 1rem;">Key Takeaway</h3>
+                <p>The choice between ML and DL isn't about superiority—it's about matching the right tool to your specific problem, data, and constraints. Many successful AI systems combine both approaches strategically.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
