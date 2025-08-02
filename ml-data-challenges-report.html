@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigating Real-World Data Challenges in Machine Learning</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --text-light: #ffffff;
+            --bg-dark: #0d1117;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header Styles */
+        .header {
+            text-align: center;
+            padding: 4rem 0;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.2) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--bg-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            position: relative;
+            z-index: 1;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            padding: 0.8rem 1.5rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 600;
+        }
+
+        .nav-item:hover {
+            background: var(--bg-gradient);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Section Styles */
+        .section {
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--bg-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin: 2rem 0 1rem;
+            font-weight: 600;
+        }
+
+        .icon {
+            font-size: 2rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Scenario Cards */
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .scenario-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            padding: 2rem;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scenario-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--bg-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .scenario-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .scenario-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+        }
+
+        .scenario-number {
+            font-size: 3rem;
+            color: var(--accent-color);
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-weight: 700;
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            background: var(--glass-bg);
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        /* Visual Elements */
+        .visual-diagram {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pipeline {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .pipeline-step {
+            background: var(--bg-gradient);
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            position: relative;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .pipeline-step:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        .arrow {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        /* Comparison Grid */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-item h4 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Key Learnings */
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .learning-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .learning-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .learning-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Metrics */
+        .metrics-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            min-width: 150px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .metric-label {
+            color: var(--text-light);
+            margin-top: 0.5rem;
+            opacity: 0.8;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            color: var(--accent-color);
+        }
+
+        /* Relevance Section */
+        .relevance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .relevance-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--accent-color);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--text-light);
+            opacity: 0.7;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .container { padding: 1rem; }
+            .comparison-grid { grid-template-columns: 1fr; }
+            .pipeline { flex-direction: column; }
+            .arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Navigating Real-World Data Challenges in Machine Learning</h1>
+            <p class="subtitle">A Dialogue-Based Exploration with Interactive AI</p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav">
+            <div class="nav-item" onclick="scrollToSection('overview')">Overview</div>
+            <div class="nav-item" onclick="scrollToSection('scenarios')">Scenarios</div>
+            <div class="nav-item" onclick="scrollToSection('learnings')">Key Learnings</div>
+            <div class="nav-item" onclick="scrollToSection('relevance')">Relevance</div>
+        </div>
+
+        <!-- Overview Section -->
+        <div class="section" id="overview">
+            <h2><span class="icon">🎯</span> Project Overview</h2>
+            <div class="card">
+                <p>This case study documents an innovative learning approach where I engaged in structured conversations with an AI mentor to tackle three critical data challenges in machine learning. Each scenario was carefully selected to mirror real-world problems encountered in robotics and autonomous systems.</p>
+                
+                <div class="metrics-container">
+                    <div class="metric">
+                        <div class="metric-value">3</div>
+                        <div class="metric-label">Scenarios Explored</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">15+</div>
+                        <div class="metric-label">Techniques Applied</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">100%</div>
+                        <div class="metric-label">Industry Relevant</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scenarios Section -->
+        <div class="section" id="scenarios">
+            <h2><span class="icon">🔍</span> Data Challenge Scenarios</h2>
+            
+            <div class="scenario-grid">
+                <!-- Scenario 1 -->
+                <div class="scenario-card">
+                    <div class="scenario-number">1</div>
+                    <h3>Missing Data in Health Datasets</h3>
+                    <p><strong>Challenge:</strong> Age and weight values missing in healthcare dataset</p>
+                    <p><strong>Industry Context:</strong> Similar to sensor failures in robotics systems</p>
+                </div>
+
+                <!-- Scenario 2 -->
+                <div class="scenario-card">
+                    <div class="scenario-number">2</div>
+                    <h3>Noisy Image Data in Autonomous Vehicles</h3>
+                    <p><strong>Challenge:</strong> Motion blur, low light, and sensor noise</p>
+                    <p><strong>Industry Context:</strong> Direct application to robotics vision systems</p>
+                </div>
+
+                <!-- Scenario 3 -->
+                <div class="scenario-card">
+                    <div class="scenario-number">3</div>
+                    <h3>Imbalanced Defect Detection</h3>
+                    <p><strong>Challenge:</strong> Only 5% defective samples in dataset</p>
+                    <p><strong>Industry Context:</strong> Quality control in manufacturing robotics</p>
+                </div>
+            </div>
+
+            <!-- Detailed Scenario Analysis -->
+            <h3>📊 Scenario 1: Missing Data Strategy</h3>
+            <div class="card">
+                <h4>Approach Pipeline</h4>
+                <div class="pipeline">
+                    <div class="pipeline-step">Analyze Patterns</div>
+                    <span class="arrow">→</span>
+                    <div class="pipeline-step">Quantify Missing %</div>
+                    <span class="arrow">→</span>
+                    <div class="pipeline-step">Select Strategy</div>
+                    <span class="arrow">→</span>
+                    <div class="pipeline-step">Validate Results</div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Missing Data Type</th>
+                                <th>Technique</th>
+                                <th>When to Use</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>MCAR (Random)</td>
+                                <td>Mean/Median Imputation</td>
+                                <td>&lt;10% missing, normally distributed</td>
+                            </tr>
+                            <tr>
+                                <td>MAR (Systematic)</td>
+                                <td>KNN Imputation</td>
+                                <td>Pattern-based missingness</td>
+                            </tr>
+                            <tr>
+                                <td>NMAR (Non-random)</td>
+                                <td>Multiple Imputation (MICE)</td>
+                                <td>Complex dependencies</td>
+                            </tr>
+                            <tr>
+                                <td>Any Type</td>
+                                <td>XGBoost (native handling)</td>
+                                <td>When model robustness preferred</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="visual-diagram">
+                    <h4>Key Insight: Missingness as Information</h4>
+                    <p>Created binary indicators for missing values, turning absence into a predictive feature</p>
+                </div>
+            </div>
+
+            <h3>📸 Scenario 2: Noisy Vision Data</h3>
+            <div class="card">
+                <h4>Multi-Layer Defense Strategy</h4>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Layer</th>
+                                <th>Technique</th>
+                                <th>Purpose</th>
+                                <th>Implementation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Data Level</td>
+                                <td>Augmentation</td>
+                                <td>Simulate real-world conditions</td>
+                                <td>Blur, jitter, occlusions</td>
+                            </tr>
+                            <tr>
+                                <td>Preprocessing</td>
+                                <td>Denoising Autoencoders</td>
+                                <td>Clean input signals</td>
+                                <td>Learned noise reduction</td>
+                            </tr>
+                            <tr>
+                                <td>Temporal</td>
+                                <td>Kalman Filtering</td>
+                                <td>Multi-frame stability</td>
+                                <td>State estimation</td>
+                            </tr>
+                            <tr>
+                                <td>Architecture</td>
+                                <td>Vision Transformers</td>
+                                <td>Robust feature extraction</td>
+                                <td>Attention mechanisms</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="code-block">
+                    <code>
+# Multi-View Fusion Approach<br>
+views = [camera_1, camera_2, lidar_projection]<br>
+fused_features = attention_fusion(views)<br>
+prediction = robust_model(fused_features)
+                    </code>
+                </div>
+
+                <div class="visual-diagram">
+                    <h4>Real-Time Processing Pipeline</h4>
+                    <div class="pipeline">
+                        <div class="pipeline-step">Raw Input</div>
+                        <span class="arrow">→</span>
+                        <div class="pipeline-step">Denoise</div>
+                        <span class="arrow">→</span>
+                        <div class="pipeline-step">Multi-View Fusion</div>
+                        <span class="arrow">→</span>
+                        <div class="pipeline-step">Prediction</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>⚖️ Scenario 3: Class Imbalance</h3>
+            <div class="card">
+                <h4>Comprehensive Imbalance Strategy</h4>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h4>SMOTE (Basic)</h4>
+                        <ul>
+                            <li>Creates synthetic samples between neighbors</li>
+                            <li>Uniform distribution of new samples</li>
+                            <li>Good for moderate imbalance (10-20%)</li>
+                            <li>Risk of overfitting in dense regions</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4>ADASYN (Advanced)</h4>
+                        <ul>
+                            <li>Adaptive synthetic generation</li>
+                            <li>Focuses on difficult boundary cases</li>
+                            <li>Better for severe imbalance (&lt;10%)</li>
+                            <li>Improves decision boundary definition</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Strategy Type</th>
+                                <th>Method</th>
+                                <th>Best For</th>
+                                <th>Considerations</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Resampling</td>
+                                <td>SMOTE/ADASYN</td>
+                                <td>Training set balance</td>
+                                <td>Validate on original distribution</td>
+                            </tr>
+                            <tr>
+                                <td>Algorithmic</td>
+                                <td>Focal Loss</td>
+                                <td>Hard examples</td>
+                                <td>Tune hyperparameters carefully</td>
+                            </tr>
+                            <tr>
+                                <td>Ensemble</td>
+                                <td>XGBoost + Weights</td>
+                                <td>Production systems</td>
+                                <td>Computational overhead</td>
+                            </tr>
+                            <tr>
+                                <td>Human-in-Loop</td>
+                                <td>Active Learning</td>
+                                <td>Safety-critical</td>
+                                <td>Requires expert availability</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="visual-diagram">
+                    <h4>Evaluation Metrics for Imbalanced Data</h4>
+                    <div class="metrics-container">
+                        <div class="metric">
+                            <div class="metric-value">F1</div>
+                            <div class="metric-label">Harmonic Mean</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">AUC-PR</div>
+                            <div class="metric-label">Precision-Recall</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">MCC</div>
+                            <div class="metric-label">Matthews Correlation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Learnings Section -->
+        <div class="section" id="learnings">
+            <h2><span class="icon">💡</span> Key Learnings & Insights</h2>
+            
+            <div class="learning-grid">
+                <div class="learning-card">
+                    <div class="learning-icon">🎯</div>
+                    <h4>Context is King</h4>
+                    <p>Data imputation strategies must align with domain constraints and physical laws</p>
+                </div>
+                <div class="learning-card">
+                    <div class="learning-icon">🛡️</div>
+                    <h4>Defense in Depth</h4>
+                    <p>Multiple layers of noise handling create robust vision systems</p>
+                </div>
+                <div class="learning-card">
+                    <div class="learning-icon">📊</div>
+                    <h4>Metrics Matter</h4>
+                    <p>Accuracy is misleading for imbalanced data; use F1 and AUC-PR</p>
+                </div>
+                <div class="learning-card">
+                    <div class="learning-icon">🔄</div>
+                    <h4>Iterative Validation</h4>
+                    <p>Real-world testing reveals failure modes not seen in training</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Technical Insights Gained</h3>
+                <ul>
+                    <li><strong>Missing Data:</strong> Learned that missingness patterns themselves can be informative features, especially in sensor systems where failure modes are predictable</li>
+                    <li><strong>Noisy Images:</strong> Discovered that temporal consistency (Kalman filtering) combined with spatial robustness (Vision Transformers) creates superior results</li>
+                    <li><strong>Class Imbalance:</strong> Understood that ADASYN's adaptive approach better handles real-world manufacturing defects than uniform SMOTE</li>
+                    <li><strong>Cross-Domain:</strong> Realized that robotics domain knowledge (physics constraints, safety margins) enhances ML solutions</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Relevance Section -->
+        <div class="section" id="relevance">
+            <h2><span class="icon">🎯</span> Real-World Relevance</h2>
+            
+            <div class="relevance-grid">
+                <div class="relevance-item">
+                    <h4>🤖 Robotics Applications</h4>
+                    <p>These techniques directly apply to my work in robotics control systems, where sensor failures, visual occlusions, and rare failure detection are daily challenges.</p>
+                </div>
+                <div class="relevance-item">
+                    <h4>🛡️ Safety-Critical Systems</h4>
+                    <p>Understanding how to handle edge cases and maintain system reliability is crucial when robots interact with humans or operate in unpredictable environments.</p>
+                </div>
+                <div class="relevance-item">
+                    <h4>🔧 Production Deployment</h4>
+                    <p>The emphasis on real-time processing, computational efficiency, and fallback mechanisms aligns with deploying ML models on resource-constrained robotic platforms.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Impact on My Engineering Practice</h3>
+                <p>This exercise strengthened my ability to:</p>
+                <ul>
+                    <li>Bridge the gap between theoretical ML concepts and practical robotics constraints</li>
+                    <li>Design multi-layered solutions that handle cascading failures gracefully</li>
+                    <li>Choose appropriate evaluation metrics based on deployment context, not just model performance</li>
+                    <li>Integrate domain knowledge (kinematics, dynamics) into data-driven solutions</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Created by Vishal Oza | Robotics Software Engineer | 2024</p>
+            <p>Part of Interactive AI Learning Series</p>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .scenario-card, .learning-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
