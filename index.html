@@ -541,6 +541,60 @@
             box-shadow: 0 20px 50px rgba(102, 126, 234, 0.4);
         }
 
+        /* Reflection Styles */
+        .reflection-box {
+            background: rgba(102, 126, 234, 0.05);
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-top: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .reflection-title {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .reflection-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .reflection-section h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .reflection-section p {
+            line-height: 1.8;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        .reflection-section ul {
+            list-style: none;
+            padding-left: 1.5rem;
+        }
+
+        .reflection-section ul li {
+            position: relative;
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+        }
+
+        .reflection-section ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
         /* Contact Section */
         .contact {
             background: var(--glass-bg);
@@ -638,6 +692,10 @@
 
             .project-card {
                 padding: 2rem;
+            }
+
+            .reflection-box {
+                padding: 1.5rem;
             }
         }
 
@@ -828,6 +886,50 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Artifact 1 Reflection -->
+            <div class="reflection-box">
+                <h3 class="reflection-title">Artifact 1 Reflection</h3>
+                
+                <div class="reflection-section">
+                    <h4>Customization for Target Audience</h4>
+                    <p>This artifact was carefully designed for three distinct audiences:</p>
+                    <ul>
+                        <li><strong>Non-technical users:</strong> Created intuitive interfaces with clear visual elements using Canva, ensuring accessibility without requiring AI expertise</li>
+                        <li><strong>Fintech recruiters:</strong> Demonstrated practical AI implementation through working prototypes and comprehensive documentation</li>
+                        <li><strong>AI/ML professionals:</strong> Included detailed model comparisons with performance metrics and prompt engineering methodologies</li>
+                    </ul>
+                    <p>The three-tiered approach ensured each audience could engage with the content at their comfort level while extracting relevant value.</p>
+                </div>
+
+                <div class="reflection-section">
+                    <h4>Lessons Learned</h4>
+                    <p><strong>Technical Insights:</strong></p>
+                    <ul>
+                        <li>Prompt specificity dramatically improves output quality - adding context like risk tolerance scales transformed generic advice into personalized recommendations</li>
+                        <li>Each LLM has distinct strengths: GPT-4o excels at structured breakdowns, Claude provides nuanced risk assessments, Gemini offers creative strategies</li>
+                        <li>UI/UX integration requires paradigm shifts - users expect instant calculations but LLMs work better conversationally</li>
+                    </ul>
+                    <p><strong>Process Discoveries:</strong></p>
+                    <ul>
+                        <li>Conversational AI reduces financial anxiety barriers that prevent engagement with traditional tools</li>
+                        <li>Visual outputs significantly increase user trust in AI-generated financial advice</li>
+                        <li>Robust error handling is crucial for maintaining user confidence</li>
+                    </ul>
+                </div>
+
+                <div class="reflection-section">
+                    <h4>Revisions Applied</h4>
+                    <p>Through iterative development based on user testing:</p>
+                    <ul>
+                        <li><strong>Enhanced Personalization:</strong> Added demographic inputs and financial goal categorization for targeted advice generation</li>
+                        <li><strong>Comparative Analysis Matrix:</strong> Created detailed comparison tables with specific metrics for each model tested</li>
+                        <li><strong>Visual Improvements:</strong> Replaced low-resolution screenshots with annotated high-quality images and user journey flow diagrams</li>
+                        <li><strong>Security Section:</strong> Added comprehensive data handling explanations including local processing options</li>
+                        <li><strong>Contextualized Timeline:</strong> Enhanced AI evolution timeline with practical implications annotations</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <!-- Artifact 2 -->
@@ -905,6 +1007,50 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Artifact 2 Reflection -->
+            <div class="reflection-box">
+                <h3 class="reflection-title">Artifact 2 Reflection</h3>
+                
+                <div class="reflection-section">
+                    <h4>Customization for Target Audience</h4>
+                    <p>This artifact targets multiple stakeholder groups:</p>
+                    <ul>
+                        <li><strong>AI Ethics Researchers:</strong> Provided systematic analysis of AI's handling of abstract concepts with documented response patterns</li>
+                        <li><strong>Product Designers:</strong> Explored conversational AI boundaries through practical examples and edge case testing</li>
+                        <li><strong>Leadership Development Professionals:</strong> Demonstrated AI's potential as a reflective tool for personal growth and decision-making</li>
+                        <li><strong>General Audience:</strong> Used accessible language while maintaining philosophical depth to engage broader interest</li>
+                    </ul>
+                </div>
+
+                <div class="reflection-section">
+                    <h4>Lessons Learned</h4>
+                    <p><strong>Conceptual Insights:</strong></p>
+                    <ul>
+                        <li>AI models demonstrate sophisticated pattern matching in philosophical discourse but lack genuine understanding</li>
+                        <li>Emotional keywords trigger more empathetic responses, revealing the importance of prompt framing</li>
+                        <li>Abstract concepts expose the boundary between pattern matching and true reasoning capabilities</li>
+                    </ul>
+                    <p><strong>Methodological Discoveries:</strong></p>
+                    <ul>
+                        <li>Iterative questioning reveals consistency patterns within sessions but contradictions across sessions</li>
+                        <li>Edge cases like paradoxes effectively expose model limitations</li>
+                        <li>The comparative study of ML vs DL provided deeper understanding of when to apply each approach</li>
+                    </ul>
+                </div>
+
+                <div class="reflection-section">
+                    <h4>Revisions Applied</h4>
+                    <p>Based on iterative testing and analysis:</p>
+                    <ul>
+                        <li><strong>Structured Analysis Framework:</strong> Developed categories for empathy, reasoning, and consistency evaluation</li>
+                        <li><strong>Practical Applications:</strong> Connected findings to customer service AI, mental health support, and educational tools</li>
+                        <li><strong>Visual Sentiment Analysis:</strong> Created charts showing emotional tone variations across conversation segments</li>
+                        <li><strong>Comparative Framework:</strong> Added ML vs DL study to provide technical foundation for understanding AI capabilities</li>
+                        <li><strong>Research Documentation:</strong> Enhanced documentation with specific examples and quantifiable metrics</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <!-- Artifact 3 -->
@@ -958,6 +1104,50 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Artifact 3 Reflection -->
+            <div class="reflection-box">
+                <h3 class="reflection-title">Artifact 3 Reflection</h3>
+                
+                <div class="reflection-section">
+                    <h4>Customization for Target Audience</h4>
+                    <p>This artifact was designed to appeal to:</p>
+                    <ul>
+                        <li><strong>Engineering Teams:</strong> Demonstrated practical application of ML concepts to real-world engineering problems</li>
+                        <li><strong>Educational Technology Advocates:</strong> Showcased effective AI-assisted learning methodologies</li>
+                        <li><strong>Technical Leaders:</strong> Highlighted communication skills essential for knowledge transfer in organizations</li>
+                        <li><strong>Students and Learners:</strong> Provided a model for effective engagement with AI educational tools</li>
+                    </ul>
+                </div>
+
+                <div class="reflection-section">
+                    <h4>Lessons Learned</h4>
+                    <p><strong>Learning Methodology Insights:</strong></p>
+                    <ul>
+                        <li>Structured questioning leads to deeper understanding than passive consumption of information</li>
+                        <li>Connecting abstract concepts to concrete engineering applications enhances retention</li>
+                        <li>AI chatbots excel at providing comprehensive overviews but benefit from targeted follow-up questions</li>
+                    </ul>
+                    <p><strong>Technical Communication Discoveries:</strong></p>
+                    <ul>
+                        <li>Breaking complex topics into digestible segments improves comprehension</li>
+                        <li>Real-world examples are crucial for bridging theory-practice gaps</li>
+                        <li>Interactive dialogue reveals knowledge gaps more effectively than traditional learning</li>
+                    </ul>
+                </div>
+
+                <div class="reflection-section">
+                    <h4>Revisions Applied</h4>
+                    <p>Through iterative refinement of the learning process:</p>
+                    <ul>
+                        <li><strong>Progressive Complexity:</strong> Started with fundamentals and systematically built to advanced applications</li>
+                        <li><strong>Domain Integration:</strong> Connected ML concepts to robotics, healthcare, and autonomous systems</li>
+                        <li><strong>Critical Evaluation:</strong> Added sections on implementation challenges and ethical considerations</li>
+                        <li><strong>Documentation Enhancement:</strong> Created comprehensive reports with clear structure and actionable insights</li>
+                        <li><strong>Future Roadmap:</strong> Developed specific research directions based on learning outcomes</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <!-- Artifact 4 -->
@@ -983,6 +1173,50 @@
                     <div class="project-links">
                         <a href="ml-data-challenges-report.html" target="_blank" class="project-link">View Interactive Report</a>
                     </div>
+                </div>
+            </div>
+
+            <!-- Artifact 4 Reflection -->
+            <div class="reflection-box">
+                <h3 class="reflection-title">Artifact 4 Reflection</h3>
+                
+                <div class="reflection-section">
+                    <h4>Customization for Target Audience</h4>
+                    <p>This artifact was tailored for:</p>
+                    <ul>
+                        <li><strong>ML Engineers:</strong> Provided practical solutions to common production data challenges</li>
+                        <li><strong>Robotics Teams:</strong> Focused on safety-critical systems and real-time processing requirements</li>
+                        <li><strong>Data Scientists:</strong> Explored advanced techniques for handling imperfect data</li>
+                        <li><strong>Industry Practitioners:</strong> Emphasized production-ready solutions over theoretical approaches</li>
+                    </ul>
+                </div>
+
+                <div class="reflection-section">
+                    <h4>Lessons Learned</h4>
+                    <p><strong>Technical Problem-Solving Insights:</strong></p>
+                    <ul>
+                        <li>Real-world data challenges require multiple complementary approaches rather than single solutions</li>
+                        <li>Domain knowledge is crucial - healthcare, automotive, and manufacturing each have unique constraints</li>
+                        <li>Trade-offs between accuracy, interpretability, and computational efficiency must be carefully balanced</li>
+                    </ul>
+                    <p><strong>Implementation Discoveries:</strong></p>
+                    <ul>
+                        <li>Vision Transformers offer advantages over CNNs for certain noisy data scenarios</li>
+                        <li>Ensemble methods combining statistical and ML approaches provide robust solutions</li>
+                        <li>Safety-critical systems require explainable methods alongside performance metrics</li>
+                    </ul>
+                </div>
+
+                <div class="reflection-section">
+                    <h4>Revisions Applied</h4>
+                    <p>Based on practical testing and industry requirements:</p>
+                    <ul>
+                        <li><strong>Scenario Diversification:</strong> Selected challenges from different industries to demonstrate versatility</li>
+                        <li><strong>Solution Comprehensiveness:</strong> Provided multiple approaches with pros/cons for each scenario</li>
+                        <li><strong>Visual Enhancement:</strong> Created tables and diagrams to clarify complex technical concepts</li>
+                        <li><strong>Production Focus:</strong> Emphasized deployment considerations and computational constraints</li>
+                        <li><strong>Safety Integration:</strong> Added specific considerations for safety-critical robotics applications</li>
+                    </ul>
                 </div>
             </div>
         </div>
