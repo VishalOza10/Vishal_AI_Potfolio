@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artifact 3: AI-Assisted Learning - Vishal Oza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --text-light: #ffffff;
+            --text-dark: #1a202c;
+            --bg-dark: #0d1117;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --artifact-bg: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--bg-dark);
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(2deg); }
+            66% { transform: translateY(-20px) rotate(-1deg); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(13, 17, 23, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--bg-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-btn {
+            background: transparent;
+            color: var(--text-light);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+        }
+
+        .back-btn:hover {
+            background: var(--bg-gradient);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Header Section */
+        .artifact-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .artifact-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: var(--bg-gradient);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 60px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .artifact-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--bg-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .artifact-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Journey Stats */
+        .journey-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        /* Section Styles */
+        .section {
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+            text-align: center;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-gradient);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.25);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .project-card:hover::before {
+            opacity: 0.08;
+        }
+
+        .project-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .project-description {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .project-details {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+
+        .project-details li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .project-details li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .project-details strong {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-bottom: 2rem;
+        }
+
+        .tag {
+            background: rgba(102, 126, 234, 0.2);
+            color: var(--text-light);
+            padding: 0.4rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 0.7rem 1.3rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .project-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Dialogue Examples */
+        .dialogue-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .dialogue-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .dialogue-q {
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Key Learnings Box */
+        .learnings-box {
+            background: rgba(102, 126, 234, 0.05);
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-top: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .learnings-title {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .learnings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .learning-item {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .learning-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .artifact-title {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .learnings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .journey-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Vishal Oza</div>
+            <a href="index.html" class="back-btn">← Back to Portfolio</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="artifact-header">
+            <div class="artifact-number">3</div>
+            <h1 class="artifact-title">AI-Assisted Learning & Technical Communication</h1>
+            <p class="artifact-subtitle">Demonstrating effective use of AI tools for technical learning through structured dialogue on machine learning methods</p>
+        </div>
+
+        <!-- Journey Statistics -->
+        <div class="journey-stats">
+            <div class="stat-item">
+                <div class="stat-value">3</div>
+                <div class="stat-label">Learning Paradigms</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">15+</div>
+                <div class="stat-label">Concepts Mastered</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">8</div>
+                <div class="stat-label">Real Applications</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Interactive Learning</div>
+            </div>
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">Project Components</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h4 class="project-title">AI Chatbot Learning Experience</h4>
+                    <ul class="project-details">
+                        <li><strong>Introduction:</strong> Comprehensive dialogue exploring ML training methods and engineering applications</li>
+                        <li><strong>Description:</strong> Structured conversation covering supervised, unsupervised, and reinforcement learning</li>
+                        <li><strong>Objective:</strong> Demonstrate AI-assisted learning and technical communication proficiency</li>
+                        <li><strong>Process:</strong> Interactive dialogue from gradient descent to adaptive control systems</li>
+                        <li><strong>Tools:</strong> Educational AI chatbot, Interactive learning methodology</li>
+                        <li><strong>Value:</strong> Bridge theory with practical engineering applications</li>
+                        <li><strong>Relevance:</strong> Showcases adaptability in AI-assisted learning</li>
+                    </ul>
+                    <div class="project-tags">
+                        <span class="tag">AI-Assisted Learning</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Reinforcement Learning</span>
+                        <span class="tag">Adaptive Control</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="ai-learning-experience.html" target="_blank" class="project-link">View Learning Report</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h4 class="project-title">Technical Communication Framework</h4>
+                    <p class="project-description">
+                        Analysis of effective strategies for technical communication and knowledge transfer in AI contexts.
+                    </p>
+                    <ul class="project-details">
+                        <li><strong>Communication:</strong> Clear explanation of complex concepts</li>
+                        <li><strong>Interactive Learning:</strong> Systematic questioning with real examples</li>
+                        <li><strong>Knowledge Application:</strong> Connected theory to engineering scenarios</li>
+                        <li><strong>Critical Analysis:</strong> Evaluated implementation challenges</li>
+                        <li><strong>Future Planning:</strong> Identified research directions</li>
+                    </ul>
+                    <div class="project-tags">
+                        <span class="tag">Learning Strategy</span>
+                        <span class="tag">Knowledge Integration</span>
+                        <span class="tag">Problem Solving</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Dialogue Examples -->
+        <section class="section">
+            <h2 class="section-title">Key Learning Moments</h2>
+            <div class="dialogue-section">
+                <div class="dialogue-item">
+                    <div class="dialogue-q">Q: "How does the model decide how much to adjust weights?"</div>
+                    <p>Led to deep exploration of gradient descent mathematics, learning rates, and optimization strategies.</p>
+                </div>
+                
+                <div class="dialogue-item">
+                    <div class="dialogue-q">Q: "Clustering could be useful in healthcare for patient grouping"</div>
+                    <p>Demonstrated immediate application of concepts while identifying privacy and data quality challenges.</p>
+                </div>
+                
+                <div class="dialogue-item">
+                    <div class="dialogue-q">Q: "I'd like to explore adaptive control using reinforcement learning"</div>
+                    <p>Showed focused career-relevant learning, connecting AI directly to robotics applications.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Learnings -->
+        <section class="section">
+            <div class="learnings-box">
+                <h3 class="learnings-title">Key Learnings & Insights</h3>
+                
+                <div class="learnings-grid">
+                    <div class="learning-item">
+                        <h4>Structured Questioning</h4>
+                        <p>Progressive questioning from fundamentals to advanced topics leads to deeper understanding than passive learning.</p>
+                    </div>
+                    
+                    <div class="learning-item">
+                        <h4>Theory-Practice Bridge</h4>
+                        <p>Connecting every ML concept to robotics/automation applications enhanced retention and practical understanding.</p>
+                    </div>
+                    
+                    <div class="learning-item">
+                        <h4>Interactive Advantage</h4>
+                        <p>AI chatbots provide comprehensive overviews but excel with targeted follow-up questions for specific areas.</p>
+                    </div>
+                    
+                    <div class="learning-item">
+                        <h4>Knowledge Gap Discovery</h4>
+                        <p>Interactive dialogue revealed knowledge gaps more effectively than traditional learning methods.</p>
+                    </div>
+                    
+                    <div class="learning-item">
+                        <h4>Concrete Applications</h4>
+                        <p>Warehouse robots for RL, healthcare clustering, and adaptive control made abstract concepts tangible.</p>
+                    </div>
+                    
+                    <div class="learning-item">
+                        <h4>Future Roadmap</h4>
+                        <p>Identified specific resources (Sutton & Barto book, OpenAI Gym) and projects for continued learning.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
